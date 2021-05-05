@@ -3,7 +3,7 @@ extends KinematicBody2D
 var velocity = Vector2(0, 0)
 var poke_vector = Vector2(0, 0)
 var windspeed = Vector2(0, 0)
-var level_loaded = false
+var paused = true
 
 const GLIDE_DRAG = 0.04
 const STALL_DRAG = 0.3
@@ -19,8 +19,8 @@ func _ready():
 	play("idle")
 
 
-func set_level_loaded(flag):
-	level_loaded = flag
+func set_paused(flag):
+	paused = flag
 
 
 func play(animation, flip_h=null, flip_v=null):
@@ -37,7 +37,7 @@ func play(animation, flip_h=null, flip_v=null):
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
-	if !level_loaded:
+	if paused:
 		return
 	var button_pressed = false
 	var left_right_pressed = "no"
@@ -111,12 +111,6 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x, windspeed.x, GLIDE_DRAG)
 	elif stalling:
 		velocity.x = lerp(velocity.x, windspeed.x, STALL_DRAG)
-
-
-# warning-ignore:unused_argument
-#func _on_FallZone_body_entered(body):
-	# warning-ignore:return_value_discarded
-#	get_tree().change_scene("Main.tscn")
 
 
 # When the parasol collides with something
