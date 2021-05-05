@@ -114,9 +114,9 @@ func _physics_process(delta):
 
 
 # warning-ignore:unused_argument
-func _on_FallZone_body_entered(body):
-# warning-ignore:return_value_discarded
-	get_tree().change_scene("Main.tscn")
+#func _on_FallZone_body_entered(body):
+	# warning-ignore:return_value_discarded
+#	get_tree().change_scene("Main.tscn")
 
 
 # When the parasol collides with something

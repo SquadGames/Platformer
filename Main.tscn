@@ -14,7 +14,17 @@ script = ExtResource( 1 )
 current = true
 limit_bottom = 200
 
+[node name="LevelList" type="VBoxContainer" parent="Player/Camera2D"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ToolButton" type="ToolButton" parent="Player/Camera2D/LevelList"]
+margin_right = 40.0
+margin_bottom = 22.0
+text = "play"
+
 [node name="FallZone" type="Area2D" parent="."]
+editor/display_folded = true
 collision_layer = 8
 collision_mask = 0
 
@@ -24,5 +34,5 @@ shape = SubResource( 1 )
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 download_file = "user://selectedLevel.tscn"
-[connection signal="body_entered" from="FallZone" to="Player" method="_on_FallZone_body_entered"]
+[connection signal="body_entered" from="FallZone" to="." method="_on_FallZone_body_entered"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
