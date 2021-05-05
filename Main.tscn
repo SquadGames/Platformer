@@ -21,4 +21,8 @@ collision_mask = 0
 [node name="line" type="CollisionShape2D" parent="FallZone"]
 position = Vector2( 0, 200 )
 shape = SubResource( 1 )
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+download_file = "user://selectedLevel.tscn"
 [connection signal="body_entered" from="FallZone" to="Player" method="_on_FallZone_body_entered"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
