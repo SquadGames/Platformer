@@ -15,6 +15,7 @@ download_file = "user://selectedLevel.tscn"
 [node name="getSelectedWorld" type="HTTPRequest" parent="."]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+editor/display_folded = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true

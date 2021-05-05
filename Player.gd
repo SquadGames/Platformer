@@ -8,10 +8,12 @@ var paused = true
 const GLIDE_DRAG = 0.04
 const STALL_DRAG = 0.3
 const SPEED = 100
+const AIR_SPEED_FACTOR = 2 # Divids by this factor when in air
 const GRAV = 20
 const GLIDE_DOWN_SPEED = 60
 const JUMPFORCE = -300
 const POKEFORCE = -200
+const VERTICAL_POKE_BIAS = -25
 const FRICTION = 0.2
 
 
@@ -74,11 +76,11 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_up"):
 		button_pressed = true
 		up_down_pressed = "up"
-		poke_vector.y = -POKEFORCE
+		poke_vector.y = -POKEFORCE + VERTICAL_POKE_BIAS
 	if Input.is_action_pressed("ui_down"):
 		button_pressed = true
 		up_down_pressed = "down"
-		poke_vector.y = POKEFORCE
+		poke_vector.y = POKEFORCE + VERTICAL_POKE_BIAS
 	if Input.is_action_just_pressed("poke"):
 		var poke_animations = {
 			"up": { "left": "poke_ul", "right": "poke_ur", "no": "poke_u" },
@@ -116,7 +118,6 @@ func _physics_process(delta):
 # When the parasol collides with something
 # warning-ignore:unused_argument
 func _on_Parasol_body_entered(body):
-	print("parasol_body_entered: ", body, poke_vector)
 	velocity += poke_vector
 
 

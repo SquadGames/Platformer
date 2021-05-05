@@ -36,6 +36,10 @@ func _on_getSelectedWorld_request_completed(result, response_code, headers, body
 
 # warning-ignore:unused_argument
 func _on_getSelectedLevel_request_completed(result, response_code, headers, body):
+	start_level()
+
+
+func start_level():
 	# load the selected level
 	remove_child(loaded_level)
 	loaded_level = load(selected_level).instance()
@@ -49,7 +53,6 @@ func pause_game():
 	paused = true
 	$Player.set_paused(true)
 	$GUI.raise()
-	print($Player/Camera2D.global_position)
 	var camera_position = $Player/Camera2D.get_camera_position()
 	$GUI.rect_position.x = camera_position.x - 320
 	$GUI.rect_position.y = camera_position.y - 180
@@ -61,6 +64,7 @@ func unpause_game():
 	$Player.set_paused(false)
 	$GUI.visible = false
 
+
 func _input(event):
 	if event.is_action_pressed("start"):
 		if paused:
@@ -68,3 +72,6 @@ func _input(event):
 		else:
 			pause_game()
 
+
+func _on_FallZone_body_entered(body):
+	start_level()
