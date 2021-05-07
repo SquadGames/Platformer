@@ -21,6 +21,10 @@ func _ready():
 	)
 	$GUI/VBoxContainer/QuitButton.connect("button_up", self, "quit")
 	get_and_load_world("default_world")
+	
+	if OS.get_name() == "HTML5":
+		$GUI/VBoxContainer/HBoxContainer/LocalLevelButton.remove_and_skip()
+		$GUI/VBoxContainer/HBoxContainer/LocalLevelName.remove_and_skip()
 
 
 func quit():
