@@ -14,3 +14,26 @@ margin_top = 20.0
 margin_right = 620.0
 margin_bottom = 340.0
 alignment = 1
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+margin_top = 136.0
+margin_right = 600.0
+margin_bottom = 156.0
+text = "QUIT"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 160.0
+margin_right = 600.0
+margin_bottom = 184.0
+
+[node name="LocalLevelButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_right = 83.0
+margin_bottom = 24.0
+text = "Local Level"
+
+[node name="LocalLevelName" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+margin_left = 87.0
+margin_right = 599.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 512, 0 )
+expand_to_text_length = true
