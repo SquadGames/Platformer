@@ -17,6 +17,16 @@ const VERTICAL_POKE_BIAS = -25
 const FRICTION = 0.2
 
 
+enum states {
+	IDLE,
+	WALKING,
+	FALLING,
+	GLIDING,
+	DRAGGING,
+	PAUSED,
+}
+
+
 func _ready():
 	play("idle")
 
