@@ -1,31 +1,28 @@
 extends KinematicBody2D
 
-var velocity = Vector2(0, 0)
-var poke_vector = Vector2(0, 0)
-var windspeed = Vector2(0, 0)
+const GROUND_SPEED = 150
+const AIR_SPEED = 100
+const GRAV = 2500
+const JUMPFORCE = -400
+const POKEFORCE = -450
+const POKE_ACTIVE_TIME = 0.01
+enum State {
+	READY,  # new actions possible
+	ACTING, # no new actions until current action done
+}
+enum Direction {RIGHT, LEFT, NONE}
+
 var paused = true
 
-const GLIDE_DRAG = 0.04
-const STALL_DRAG = 0.3
-const SPEED = 100
-const AIR_SPEED_FACTOR = 2 # Divids by this factor when in air
-const GRAV = 20
-const GLIDE_DOWN_SPEED = 60
-const JUMPFORCE = -300
-const POKEFORCE = -200
-const VERTICAL_POKE_BIAS = -25
-const FRICTION = 0.2
-
-
-enum states {
-	IDLE,
-	WALKING,
-	FALLING,
-	GLIDING,
-	DRAGGING,
-	PAUSED,
-}
-
+var velocity = Vector2(0, 0)
+var poke_vector = Vector2(0, 0)
+var horizontal_poke_factor = 0.4
+var vertical_poke_factor = 1.0
+var ground_friction = 0.2
+var air_friction = 0.05
+var max_glide_down_speed = 30
+var state = State.READY
+var until_ready = 0
 
 func _ready():
 	play("idle")
@@ -35,105 +32,229 @@ func set_paused(flag):
 	paused = flag
 
 
-func play(animation, flip_h=null, flip_v=null):
-	if flip_h != null:
-		$PlayerSprite.flip_h = flip_h
-		$Parasol/ParasolSprite.flip_h = flip_h
-	if flip_v != null:
-		$PlayerSprite.flip_v = flip_v
-		$Parasol/ParasolSprite.flip_v = flip_v
+func play(animation):
 	if($AnimationPlayer.current_animation == animation):
 		return
 	$AnimationPlayer.play(animation)
+
+
+# TODO consider putting active/ready in the animation player
+func active_for(active_time):
+	until_ready = active_time
+	state = State.ACTING
+
+
+func face(direction):
+	if direction == Direction.RIGHT:
+		$PlayerSprite.flip_h = false
+		$Parasol/ParasolSprite.flip_h = false
+	else:
+		$PlayerSprite.flip_h = true
+		$Parasol/ParasolSprite.flip_h = true
+
+
+func idle(delta):
+	if !is_on_floor() \
+		or Input.is_action_pressed("ui_left") \
+		or Input.is_action_pressed("ui_right"):
+		return
+
+	play("idle")
+
+	velocity.x = lerp(velocity.x, 0, ground_friction)
+
+
+func jump(delta):
+	if !Input.is_action_just_pressed("jump") or !is_on_floor():
+		return
+
+	play("jump")
+	velocity.y += JUMPFORCE
+
+
+func move(max_speed, lerp_weight, direction):
+	if (velocity.x < max_speed and direction == Direction.LEFT):
+		# moving left and velocity is already negative enough
+		return
+
+	if (velocity.x > max_speed and direction == Direction.RIGHT):
+		# moving right and velocity is already high enough
+		return
+
+	face(direction)
+	velocity.x = lerp(velocity.x, max_speed, lerp_weight)
+
+
+func ground_move(delta):
+	if !is_on_floor():
+		return
+
+	if Input.is_action_pressed("ui_right"):
+		play("run")
+		move(GROUND_SPEED, ground_friction, Direction.RIGHT)
+	elif Input.is_action_pressed("ui_left"):
+		play("run")
+		move(-GROUND_SPEED, ground_friction, Direction.LEFT)
+
+
+func air_move(delta):
+	if is_on_floor():
+		return
+
+	if Input.is_action_pressed("ui_right"):
+		move(AIR_SPEED, air_friction, Direction.RIGHT)
+	elif Input.is_action_pressed("ui_left"):
+		move(-AIR_SPEED, air_friction, Direction.LEFT)
+
+
+func glide(delta):
+	if is_on_floor() or !Input.is_action_pressed("glide"):
+		return
+
+	play("glide")
+	velocity.y = min(velocity.y, max_glide_down_speed)
+
+	if Input.is_action_pressed("ui_right"):
+		move(AIR_SPEED, air_friction, Direction.RIGHT)
+	elif Input.is_action_pressed("ui_left"):
+		move(AIR_SPEED, air_friction, Direction.LEFT)
+
+func gravity(delta):
+	velocity.y += GRAV * delta
+
+
+func poke_d(delta):
+	if !Input.is_action_just_pressed("poke_d"):
+		return
+
+	poke_vector = Vector2(0, POKEFORCE)
+	print("poking down", poke_vector, velocity)
+	play("poke_d")
+	active_for(POKE_ACTIVE_TIME)
+
+
+func poke_dl(delta):
+	if !Input.is_action_just_pressed("poke_dl"):
+		return
+
+	poke_vector = Vector2(-POKEFORCE, POKEFORCE)
+	play("poke_dl")
+	active_for(POKE_ACTIVE_TIME)
+
+
+#func poke_l(delta):
+#	if !Input.is_action_just_pressed("poke") \
+#		or Input.is_action_pressed("ui_up") \
+#  		or Input.is_action_pressed("ui_down") \
+#		or !Input.is_action_pressed("ui_left") \
+#		or Input.is_action_pressed("ui_right"):
+#		return
+#
+#	poke_vector = Vector2(-POKEFORCE, 0)
+#	play("poke_l")
+#	active_for(POKE_ACTIVE_TIME)
+#
+#
+#func poke_ul(delta):
+#	if !Input.is_action_just_pressed("poke") \
+#		or !Input.is_action_pressed("ui_up") \
+#  		or Input.is_action_pressed("ui_down") \
+#		or !Input.is_action_pressed("ui_left") \
+#		or Input.is_action_pressed("ui_right"):
+#		return
+#
+#	poke_vector = Vector2(-POKEFORCE, -POKEFORCE)
+#	play("poke_ul")
+#	active_for(POKE_ACTIVE_TIME)
+#
+#
+#func poke_u(delta):
+#	if !Input.is_action_just_pressed("poke") \
+#		or !Input.is_action_pressed("ui_up") \
+#  		or Input.is_action_pressed("ui_down") \
+#		or Input.is_action_pressed("ui_left") \
+#		or Input.is_action_pressed("ui_right"):
+#		return
+#
+#	poke_vector = Vector2(0, -POKEFORCE)
+#	play("poke_u")
+#	active_for(POKE_ACTIVE_TIME)
+#
+#
+#func poke_ur(delta):
+#	if !Input.is_action_just_pressed("poke") \
+#		or !Input.is_action_pressed("ui_up") \
+#  		or Input.is_action_pressed("ui_down") \
+#		or Input.is_action_pressed("ui_left") \
+#		or !Input.is_action_pressed("ui_right"):
+#		return
+#
+#	poke_vector = Vector2(POKEFORCE, -POKEFORCE)
+#	play("poke_ur")
+#	active_for(POKE_ACTIVE_TIME)
+#
+#
+#func poke_r(delta):
+#	if !Input.is_action_just_pressed("poke") \
+#		or Input.is_action_pressed("ui_up") \
+#  		or Input.is_action_pressed("ui_down") \
+#		or Input.is_action_pressed("ui_left") \
+#		or !Input.is_action_pressed("ui_right"):
+#		return
+#
+#	poke_vector = Vector2(POKEFORCE, 0)
+#	play("poke_r")
+#	active_for(POKE_ACTIVE_TIME)
+
+
+func poke_dr(delta):
+	if !Input.is_action_just_pressed("poke_dr"):
+		return
+
+	poke_vector = Vector2(POKEFORCE, POKEFORCE)
+	play("poke_dr")
+	active_for(POKE_ACTIVE_TIME)
 
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
 	if paused:
 		return
-	var button_pressed = false
-	var left_right_pressed = "no"
-	var up_down_pressed = "no"
-	var max_down_speed = INF
-	var gliding = false
-	var stalling = false
 
-	# TODO move poke force into poke block
-	# TODO increase up and down force for diagional pokes
-	if Input.is_action_pressed("glide"):
-		max_down_speed = GLIDE_DOWN_SPEED
-		gliding = true
-		play("glide")
-	if Input.is_action_pressed("stall"):
-		stalling = true
-		play("stall")
-	if Input.is_action_pressed("ui_right"):
-		button_pressed = true
-		left_right_pressed = "right"
-		if is_on_floor() or gliding:
-			velocity.x = SPEED
-		poke_vector.x = POKEFORCE
-		if !Input.is_action_just_pressed("poke") and is_on_floor():
-			play("run", false)
-	if Input.is_action_pressed("ui_left"):
-		button_pressed = true
-		left_right_pressed = "left"
-		if is_on_floor() or gliding:
-			velocity.x = -SPEED
-		poke_vector.x = -POKEFORCE
-		if !Input.is_action_just_pressed("poke") and is_on_floor():
-			play("run", true)
-	if Input.is_action_pressed("ui_up"):
-		button_pressed = true
-		up_down_pressed = "up"
-		poke_vector.y = -POKEFORCE + VERTICAL_POKE_BIAS
-	if Input.is_action_pressed("ui_down"):
-		button_pressed = true
-		up_down_pressed = "down"
-		poke_vector.y = POKEFORCE + VERTICAL_POKE_BIAS
-	if Input.is_action_just_pressed("poke"):
-		var poke_animations = {
-			"up": { "left": "poke_ul", "right": "poke_ur", "no": "poke_u" },
-			"down": { "left": "poke_dl", "right": "poke_dr", "no": "poke_d" },
-			"no": { "left": "poke_l", "right": "poke_r", "no": "none" }
-		}
-		var poke_animation = poke_animations[up_down_pressed][left_right_pressed]
-		if poke_animation != "none":
-			# Only consider the poke a button press if acompanied by a direction
-			button_pressed = true
-			play(poke_animation)
+	if state == State.READY:
+		# Player actions
+		idle(delta)
+		jump(delta)
+		ground_move(delta)
+		air_move(delta)
 
-	if is_on_floor() and !button_pressed:
-		poke_vector = Vector2(0, 0)
-		play("idle")
+		# future item actions
+		glide(delta)
+		poke_d(delta)
+		poke_dl(delta)
+		#poke_l(delta)
+		#poke_ul(delta)
+		#poke_u(delta)
+		#poke_ur(delta)
+		#poke_r(delta)
+		poke_dr(delta)
+	elif until_ready <= 0:
+		until_ready = 0
+		state = State.READY
+	else:
+		print(state, until_ready)
+		until_ready -= delta
 
-	velocity.y += GRAV
-	velocity.y = min(velocity.y, max_down_speed)
-	
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMPFORCE
-		play("jump")
-	
+	# Environment effects
+	gravity(delta)
+
+	# execute the movement
 	velocity = move_and_slide(velocity, Vector2.UP)
-	 
-	# lerp with friction when on floor, wind and glide/stall when in the air
-	if is_on_floor():
-		velocity.x = lerp(velocity.x, 0, FRICTION)
-	elif gliding:
-		velocity.x = lerp(velocity.x, windspeed.x, GLIDE_DRAG)
-	elif stalling:
-		velocity.x = lerp(velocity.x, windspeed.x, STALL_DRAG)
 
 
 # When the parasol collides with something
 # warning-ignore:unused_argument
 func _on_Parasol_body_entered(body):
+	poke_vector.x *= horizontal_poke_factor
+	poke_vector.y *= vertical_poke_factor
 	velocity += poke_vector
-
-
-func _on_Parasol_area_entered(area):
-	_on_Parasol_body_entered(area)
-
-
-func _on_Parasol_area_shape_entered(area_id, area, area_shape, self_shape):
-	_on_Parasol_body_entered(area_shape)
