@@ -120,3 +120,4 @@ func _on_FallZone_body_entered(body):
 
 func _on_goal_body_entered(body):
 	pause_game()
+
