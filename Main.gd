@@ -22,7 +22,6 @@ func _ready():
 	$GUI/VBoxContainer/QuitButton.connect("button_up", self, "quit")
 	get_and_load_world("default_world")
 
-	# TODO make this some secret input to unlock local levels
 	if !OS.has_feature("editor"):
 		$GUI/VBoxContainer/HBoxContainer/LocalLevelButton.remove_and_skip()
 		$GUI/VBoxContainer/HBoxContainer/LocalLevelName.remove_and_skip()
