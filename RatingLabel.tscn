@@ -15,7 +15,6 @@ custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
 bbcode_text = "[right]1000[/right]"
 text = "1000"
-fit_content_height = true
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

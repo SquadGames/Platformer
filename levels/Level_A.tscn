@@ -2197,6 +2197,7 @@ tile_data = PoolIntArray( -851957, 49, 0, -851956, 51, 0, -851953, 49, 0, -85195
 script = ExtResource( 2 )
 
 [node name="Wind" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="Area2D" type="Area2D" parent="Wind"]
 editor/display_folded = true
@@ -2211,6 +2212,7 @@ position = Vector2( 25, 323 )
 shape = SubResource( 113 )
 
 [node name="Area2D2" type="Area2D" parent="Wind"]
+editor/display_folded = true
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wind/Area2D2"]
