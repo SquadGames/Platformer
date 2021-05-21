@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://MediumTitle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/GUI/Squario Menu BG.png" type="Texture" id=2]
+[ext_resource path="res://assets/GUI/Squario Logo.svg" type="Texture" id=3]
+[ext_resource path="res://MenuButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://MainMenu.gd" type="Script" id=5]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" parent="." instance=ExtResource( 1 )]
+margin_bottom = 328.0
+texture = ExtResource( 3 )
+
+[node name="Opts" type="VBoxContainer" parent="."]
+margin_left = 364.991
+margin_top = 259.0
+margin_right = 640.991
+margin_bottom = 511.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect" parent="Opts" instance=ExtResource( 4 )]
+type = "scene"
+destination = "res://LevelSelect.tscn"
+
+[node name="BuildLevels" parent="Opts" instance=ExtResource( 4 )]
+margin_top = 50.0
+margin_bottom = 96.0
+text = "Build Levels"
+type = "link"
+destination = "#"
+
+[node name="Options" parent="Opts" instance=ExtResource( 4 )]
+margin_top = 100.0
+margin_bottom = 146.0
+text = "Options"
+type = "scene"
+destination = "res://Options.tscn"
+
+[node name="WhatIsThis" parent="Opts" instance=ExtResource( 4 )]
+margin_top = 150.0
+margin_bottom = 196.0
+text = "What is this?"
+type = "scene"
+destination = "WhatIsThis.tscn"
