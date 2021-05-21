@@ -1,6 +1,7 @@
 extends Control
 
 var RatingLabel = preload("res://RatingLabel.tscn")
+var LevelButton = preload("res://LevelButton.tscn")
 var rng = RandomNumberGenerator.new()
 
 func _ready():
