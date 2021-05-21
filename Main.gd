@@ -21,7 +21,7 @@ func _ready():
 	)
 	$GUI/VBoxContainer/QuitButton.connect("button_up", self, "quit")
 	get_and_load_world("default_world")
-	
+
 	# TODO make this some secret input to unlock local levels
 	if OS.get_name() == "HTML5":
 		$GUI/VBoxContainer/HBoxContainer/LocalLevelButton.remove_and_skip()
@@ -47,7 +47,7 @@ func get_and_load_level(level_name, template = LEVEL_ADDRESS_TEMPLATE):
 	dir.remove(selected_level)
 	$Player.visible = false
 	$getSelectedLevel.request(template.format({"level_name": level_name}))
-	
+
 
 func load_local_level():
 	selected_level = LOCAL_LEVEL_TEMPLATE.format({"level_name": entered_level})
@@ -76,6 +76,18 @@ func start_level():
 	add_child(loaded_level)
 	$Player.position = starting_player_position
 	$Player.visible = true
+	
+	# Connect Goals entered signals
+	if loaded_level.has_method("goal_areas"):
+		for area in loaded_level.goal_areas():
+			area.connect("body_entered", self, "_on_goal_body_entered")
+
+	# Connect player to level wind
+	if loaded_level.has_method("wind_areas"):
+		for area in loaded_level.wind_areas():
+			area.connect("body_entered", $Player, "_on_wind_body_entered", [area.wind_velocity])
+			area.connect("body_exited", $Player, "_on_wind_body_exited", [area.wind_velocity])
+
 	unpause_game()
 
 
@@ -105,3 +117,6 @@ func _input(event):
 
 func _on_FallZone_body_entered(body):
 	start_level()
+
+func _on_goal_body_entered(body):
+	pause_game()
