@@ -1,7 +1,6 @@
 extends Control
 
-var RatingLabel = preload("res://RatingLabel.tscn")
-var LevelButton = preload("res://LevelButton.tscn")
+var LevelRow = preload("res://LevelRow.tscn")
 var rng = RandomNumberGenerator.new()
 
 func _ready():
@@ -14,15 +13,16 @@ func _on_world_request_completed(result, response_code, headers, body):
 	var text = body.get_string_from_utf8()
 	var world = JSON.parse(text).result
 	for level in world["levels"]:
-		var level_button = Button.new()
-		level_button.text = level
-		# level_button.connect("button_up", self, "get_and_load_level", [level])
-		$Levels.add_child(level_button)
-		var level_rating = RatingLabel.instance()
+		var level_row = LevelRow.instance()
+		var button = level_row.get_child(0)
+		var rating = level_row.get_child(1).get_child(0)
+		button.text = level
+		button.type = "scene"
+		var destination = "res://placeholder.tscn"
+		# button.connect("pressed", self, "_load_scene", [destination])
 		rng.randomize()
-		level_rating.label_text = str(rng.randi_range(0, 10000))
-		print("trying to add level rating", level_rating.text)
-		$Ratings.add_child(level_rating)
+		rating.label_text = str(rng.randi_range(0, 1000))
+		$LevelList/LevelBox.add_child(level_row)
 
 func _load_scene(scene):
 	print("Trying to load scene: ", scene)

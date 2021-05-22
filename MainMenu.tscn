@@ -3,8 +3,8 @@
 [ext_resource path="res://MediumTitle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/GUI/Squario Menu BG.png" type="Texture" id=2]
 [ext_resource path="res://assets/GUI/Squario Logo.svg" type="Texture" id=3]
-[ext_resource path="res://MenuButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://MainMenu.gd" type="Script" id=5]
+[ext_resource path="res://DestinationButton.tscn" type="PackedScene" id=6]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -35,27 +35,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelSelect" parent="Opts" instance=ExtResource( 4 )]
+[node name="LevelSelect" parent="Opts" instance=ExtResource( 6 )]
+margin_bottom = 40.0
+text = "Level Select"
 type = "scene"
 destination = "res://LevelSelect.tscn"
+font_size = 32
+selected_font_size = 48
+selected_outline_size = 20
 
-[node name="BuildLevels" parent="Opts" instance=ExtResource( 4 )]
-margin_top = 50.0
-margin_bottom = 96.0
+[node name="BuildLevels" parent="Opts" instance=ExtResource( 6 )]
+margin_top = 44.0
+margin_bottom = 84.0
 text = "Build Levels"
 type = "link"
-destination = "#"
+destination = "https://github.com/SquadGames/Platformer/blob/main/docs/making_a_custom_level.md"
+font_size = 32
+selected_font_size = 48
+selected_outline_size = 20
 
-[node name="Options" parent="Opts" instance=ExtResource( 4 )]
-margin_top = 100.0
-margin_bottom = 146.0
+[node name="Options" parent="Opts" instance=ExtResource( 6 )]
+margin_top = 88.0
+margin_bottom = 128.0
 text = "Options"
 type = "scene"
 destination = "res://Options.tscn"
+font_size = 32
+selected_font_size = 48
+selected_outline_size = 20
 
-[node name="WhatIsThis" parent="Opts" instance=ExtResource( 4 )]
-margin_top = 150.0
-margin_bottom = 196.0
+[node name="WhatIsThis" parent="Opts" instance=ExtResource( 6 )]
+margin_top = 132.0
+margin_bottom = 172.0
 text = "What is this?"
 type = "scene"
-destination = "WhatIsThis.tscn"
+destination = "res://WhatIsThis.tscn"
+font_size = 32
+selected_font_size = 48
+selected_outline_size = 20

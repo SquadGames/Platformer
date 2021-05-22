@@ -13,3 +13,4 @@ func _load_scene(scene):
 	
 func _open_link(link):
 	print("Trying to open link: ", link)
+	OS.shell_open(link)
