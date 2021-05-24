@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://DestinationButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://LevelDetails.tscn" type="PackedScene" id=2]
 [ext_resource path="res://MediumTitle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/GUI/Squario Level Select.svg" type="Texture" id=5]
 [ext_resource path="res://assets/GUI/Squario Menu BG.png" type="Texture" id=6]
@@ -20,7 +21,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="getWorld" type="HTTPRequest" parent="."]
+[node name="get_world" type="HTTPRequest" parent="."]
+
+[node name="get_level" type="HTTPRequest" parent="."]
+download_file = "user://selectedLevel.tscn"
 
 [node name="BG" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -87,6 +91,8 @@ __meta__ = {
 
 [node name="LevelRow" parent="LevelList/LevelBox" instance=ExtResource( 10 )]
 visible = false
+margin_right = 488.0
+margin_bottom = 40.0
 
 [node name="BackButton" parent="." instance=ExtResource( 1 )]
 margin_left = 374.0
@@ -99,3 +105,9 @@ destination = "res://MainMenu.tscn"
 font_size = 32
 selected_font_size = 48
 selected_outline_size = 20
+
+[node name="LevelDetails" parent="." instance=ExtResource( 2 )]
+visible = false
+
+[connection signal="request_completed" from="get_world" to="." method="_on_get_world_request_completed"]
+[connection signal="request_completed" from="get_level" to="." method="_on_get_level_request_completed"]

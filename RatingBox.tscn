@@ -13,3 +13,4 @@ __meta__ = {
 [node name="RatingLabel" parent="." instance=ExtResource( 1 )]
 margin_top = 3.0
 margin_bottom = 32.0
+fit_content_height = true

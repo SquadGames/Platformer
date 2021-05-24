@@ -35,4 +35,5 @@ margin_top = -180.0
 margin_right = 321.0
 margin_bottom = 179.0
 focus_mode = 2
+
 [connection signal="body_entered" from="FallZone" to="." method="_on_FallZone_body_entered"]
