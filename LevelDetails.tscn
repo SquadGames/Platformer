@@ -51,6 +51,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="get_level" type="HTTPRequest" parent="."]
+download_file = "selectedLevel.tscn"
+
 [node name="BG" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -224,7 +227,9 @@ custom_fonts/font = SubResource( 9 )
 text = "Back"
 align = 0
 type = "scene"
-destination = "res://LevelList.tscn"
+destination = "res://LevelSelect.tscn"
 font_size = 32
 selected_font_size = 32
 selected_outline_size = 10
+
+[connection signal="request_completed" from="get_level" to="." method="_on_get_level_request_completed"]

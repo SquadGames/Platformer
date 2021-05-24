@@ -6,10 +6,9 @@ var rng = RandomNumberGenerator.new()
 
 func _ready():
 	$BackButton.connect("pressed", self, "_load_scene", [$BackButton.destination])
-	$getWorld.connect("request_completed", self, "_on_world_request_completed")
-	$getWorld.request("https://raw.githubusercontent.com/SquadGames/Platformer/main/worlds/default_world.json")
+	$get_world.request("https://raw.githubusercontent.com/SquadGames/Platformer/main/worlds/default_world.json")
 
-func _on_world_request_completed(result, response_code, headers, body):
+func _on_get_world_request_completed(result, response_code, headers, body):
 	print("get selected world request complete", result)
 	var text = body.get_string_from_utf8()
 	var world = JSON.parse(text).result
@@ -22,6 +21,7 @@ func _on_world_request_completed(result, response_code, headers, body):
 		button.type = "scene"
 		var level_details = LevelDetails.instance()
 		level_details.level = "res://levels/%s.tscn" % level
+		level_details.level_name = level
 		level_details.author = "Author: placeholder"
 		level_details.current_owner = "Patron: placeholder"
 		button.connect("pressed", self, "_load_details", [level_details])
@@ -42,5 +42,3 @@ func _load_details(level_details):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-	
-

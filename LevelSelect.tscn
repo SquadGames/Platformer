@@ -20,7 +20,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="getWorld" type="HTTPRequest" parent="."]
+[node name="get_world" type="HTTPRequest" parent="."]
 
 [node name="BG" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -99,3 +99,5 @@ destination = "res://MainMenu.tscn"
 font_size = 32
 selected_font_size = 48
 selected_outline_size = 20
+
+[connection signal="request_completed" from="get_world" to="." method="_on_get_world_request_completed"]
