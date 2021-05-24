@@ -73,24 +73,24 @@ __meta__ = {
 
 [node name="TitleRow" type="HBoxContainer" parent="MainColumn"]
 margin_right = 640.0
-margin_bottom = 115.0
+margin_bottom = 112.0
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.52
+size_flags_stretch_ratio = 0.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TitleBox" type="VBoxContainer" parent="MainColumn/TitleRow"]
 margin_right = 563.0
-margin_bottom = 115.0
+margin_bottom = 112.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="Title" type="RichTextLabel" parent="MainColumn/TitleRow/TitleBox"]
-margin_top = 17.0
+margin_top = 15.0
 margin_right = 563.0
-margin_bottom = 98.0
+margin_bottom = 96.0
 custom_fonts/normal_font = SubResource( 10 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
@@ -101,11 +101,11 @@ fit_content_height = true
 [node name="SupportBox" type="VBoxContainer" parent="MainColumn/TitleRow"]
 margin_left = 567.0
 margin_right = 640.0
-margin_bottom = 115.0
+margin_bottom = 112.0
 
 [node name="RatingBG" type="TextureRect" parent="MainColumn/TitleRow/SupportBox"]
 margin_right = 73.0
-margin_bottom = 83.0
+margin_bottom = 80.0
 size_flags_vertical = 3
 texture = ExtResource( 5 )
 expand = true
@@ -120,9 +120,9 @@ __meta__ = {
 }
 
 [node name="RatingLabel" type="RichTextLabel" parent="MainColumn/TitleRow/SupportBox/RatingBG/RatingBox"]
-margin_top = 14.0
+margin_top = 13.0
 margin_right = 73.0
-margin_bottom = 35.0
+margin_bottom = 34.0
 size_flags_stretch_ratio = 0.81
 custom_fonts/normal_font = SubResource( 1 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
@@ -134,9 +134,9 @@ text = "Rating"
 fit_content_height = true
 
 [node name="Rating" type="RichTextLabel" parent="MainColumn/TitleRow/SupportBox/RatingBG/RatingBox"]
-margin_top = 39.0
+margin_top = 38.0
 margin_right = 73.0
-margin_bottom = 68.0
+margin_bottom = 67.0
 custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/selection_color = Color( 1, 1, 1, 1 )
@@ -147,9 +147,9 @@ text = "1000"
 fit_content_height = true
 
 [node name="SupportButton" parent="MainColumn/TitleRow/SupportBox" instance=ExtResource( 2 )]
-margin_top = 87.0
+margin_top = 84.0
 margin_right = 73.0
-margin_bottom = 115.0
+margin_bottom = 112.0
 custom_fonts/font = SubResource( 3 )
 text = "Support"
 type = "link"
@@ -159,9 +159,9 @@ selected_font_size = 22
 selected_outline_size = 12
 
 [node name="Author" type="RichTextLabel" parent="MainColumn"]
-margin_top = 119.0
+margin_top = 116.0
 margin_right = 640.0
-margin_bottom = 140.0
+margin_bottom = 137.0
 custom_fonts/normal_font = SubResource( 4 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
@@ -170,9 +170,9 @@ text = "Author:"
 fit_content_height = true
 
 [node name="Patron" type="RichTextLabel" parent="MainColumn"]
-margin_top = 144.0
+margin_top = 141.0
 margin_right = 640.0
-margin_bottom = 165.0
+margin_bottom = 162.0
 custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
@@ -181,16 +181,16 @@ text = "Patron:"
 fit_content_height = true
 
 [node name="TextureRect" type="TextureRect" parent="MainColumn"]
-margin_top = 169.0
+margin_top = 166.0
 margin_right = 640.0
-margin_bottom = 180.0
+margin_bottom = 177.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.05
 
 [node name="PreviewLabel" type="RichTextLabel" parent="MainColumn"]
-margin_top = 184.0
+margin_top = 181.0
 margin_right = 640.0
-margin_bottom = 225.0
+margin_bottom = 222.0
 custom_fonts/normal_font = SubResource( 7 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
@@ -199,7 +199,7 @@ text = "Preview"
 fit_content_height = true
 
 [node name="Preview" type="TextureRect" parent="MainColumn"]
-margin_top = 229.0
+margin_top = 226.0
 margin_right = 640.0
 margin_bottom = 452.0
 size_flags_vertical = 3

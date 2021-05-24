@@ -12,7 +12,7 @@ enum State {
 }
 enum Direction {RIGHT, LEFT, NONE}
 
-var paused = true
+var paused = false
 
 var velocity = Vector2(0, 0)
 var poke_vector = Vector2(0, 0)
