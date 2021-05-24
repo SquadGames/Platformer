@@ -6,40 +6,40 @@
 [ext_resource path="res://assets/GUI/Fonts/Pangolin-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/GUI/black rec.svg" type="Texture" id=5]
 
-[sub_resource type="DynamicFontData" id=6]
+[sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/GUI/Fonts/Pangolin-Regular.ttf"
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=2]
 size = 64
 outline_color = Color( 0.482353, 0.380392, 1, 1 )
-font_data = SubResource( 6 )
-
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 22
-font_data = ExtResource( 4 )
+font_data = SubResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 22
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=4]
+size = 22
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=5]
+size = 22
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=7]
-size = 32
-font_data = SubResource( 6 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=8]
+size = 32
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=9]
 size = 48
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=10]
 size = 32
 font_data = ExtResource( 4 )
 
@@ -50,9 +50,6 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="get_level" type="HTTPRequest" parent="."]
-download_file = "selectedLevel.tscn"
 
 [node name="BG" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -94,7 +91,7 @@ alignment = 1
 margin_top = 15.0
 margin_right = 563.0
 margin_bottom = 96.0
-custom_fonts/normal_font = SubResource( 10 )
+custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -127,7 +124,7 @@ margin_top = 13.0
 margin_right = 73.0
 margin_bottom = 34.0
 size_flags_stretch_ratio = 0.81
-custom_fonts/normal_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 3 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/selection_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_selected = Color( 1, 1, 1, 1 )
@@ -140,7 +137,7 @@ fit_content_height = true
 margin_top = 38.0
 margin_right = 73.0
 margin_bottom = 67.0
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 4 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/selection_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_selected = Color( 1, 1, 1, 1 )
@@ -153,7 +150,7 @@ fit_content_height = true
 margin_top = 84.0
 margin_right = 73.0
 margin_bottom = 112.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 text = "Support"
 type = "link"
 destination = "#"
@@ -165,7 +162,7 @@ selected_outline_size = 12
 margin_top = 116.0
 margin_right = 640.0
 margin_bottom = 137.0
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 6 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -176,7 +173,7 @@ fit_content_height = true
 margin_top = 141.0
 margin_right = 640.0
 margin_bottom = 162.0
-custom_fonts/normal_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 7 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -194,7 +191,7 @@ size_flags_stretch_ratio = 0.05
 margin_top = 181.0
 margin_right = 640.0
 margin_bottom = 222.0
-custom_fonts/normal_font = SubResource( 7 )
+custom_fonts/normal_font = SubResource( 8 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -211,7 +208,7 @@ size_flags_vertical = 3
 margin_top = 456.0
 margin_right = 640.0
 margin_bottom = 516.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 text = "Start"
 align = 0
 type = "level"
@@ -223,13 +220,11 @@ selected_outline_size = 16
 margin_top = 520.0
 margin_right = 640.0
 margin_bottom = 560.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
 text = "Back"
 align = 0
-type = "scene"
-destination = "res://LevelSelect.tscn"
+type = "popup"
+destination = "self"
 font_size = 32
 selected_font_size = 32
 selected_outline_size = 10
-
-[connection signal="request_completed" from="get_level" to="." method="_on_get_level_request_completed"]
