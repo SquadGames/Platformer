@@ -6,6 +6,9 @@ const GRAV = 2500
 const JUMPFORCE = -400
 const POKEFORCE = -450
 const POKE_ACTIVE_TIME = 0.01
+const BASE_AIR_FRICTION = 0.05
+const BASE_GROUND_FRICTION = 0.2
+const GLIDE_AIR_FRICTION = 1
 enum State {
 	READY,  # new actions possible
 	ACTING, # no new actions until current action done
@@ -18,11 +21,13 @@ var velocity = Vector2(0, 0)
 var poke_vector = Vector2(0, 0)
 var horizontal_poke_factor = 0.4
 var vertical_poke_factor = 1.0
-var ground_friction = 0.2
-var air_friction = 0.05
+var ground_friction = BASE_GROUND_FRICTION
+var air_friction = BASE_AIR_FRICTION
 var max_glide_down_speed = 30
 var state = State.READY
 var until_ready = 0
+var wind_velocity = Vector2(0, 0)
+
 
 func _ready():
 	play("idle")
@@ -108,16 +113,22 @@ func air_move(delta):
 
 
 func glide(delta):
-	if is_on_floor() or !Input.is_action_pressed("glide"):
+	if !Input.is_action_pressed("glide"):
+		air_friction = BASE_AIR_FRICTION
+		return
+	if is_on_floor():
 		return
 
 	play("glide")
 	velocity.y = min(velocity.y, max_glide_down_speed)
+	air_friction = GLIDE_AIR_FRICTION
 
+	# TODO consider changing air speed rather than executing move again here
 	if Input.is_action_pressed("ui_right"):
 		move(AIR_SPEED, air_friction, Direction.RIGHT)
 	elif Input.is_action_pressed("ui_left"):
 		move(AIR_SPEED, air_friction, Direction.LEFT)
+
 
 func gravity(delta):
 	velocity.y += GRAV * delta
@@ -128,7 +139,6 @@ func poke_d(delta):
 		return
 
 	poke_vector = Vector2(0, POKEFORCE)
-	print("poking down", poke_vector, velocity)
 	play("poke_d")
 	active_for(POKE_ACTIVE_TIME)
 
@@ -206,6 +216,22 @@ func poke_dl(delta):
 #	play("poke_r")
 #	active_for(POKE_ACTIVE_TIME)
 
+func wind(delta):
+	if wind_velocity.x > 0:
+		velocity.x = min(velocity.x,
+			velocity.x + (wind_velocity.x * delta * air_friction))
+	elif wind_velocity.x < 0:
+		velocity.x = max(velocity.x,
+			velocity.x + (wind_velocity.x * delta * air_friction))
+
+	if wind_velocity.y > 0:
+		velocity.y = min(velocity.y,
+			velocity.y + (wind_velocity.y * delta * air_friction))
+	elif wind_velocity.y < 0:
+		print(velocity.y, " ", wind_velocity.y, " ", air_friction)
+		velocity.y = min(velocity.y,
+			velocity.y + (wind_velocity.y * delta * air_friction))
+		print(velocity.y)
 
 func poke_dr(delta):
 	if !Input.is_action_just_pressed("poke_dr"):
@@ -242,11 +268,11 @@ func _physics_process(delta):
 		until_ready = 0
 		state = State.READY
 	else:
-		print(state, until_ready)
 		until_ready -= delta
 
 	# Environment effects
 	gravity(delta)
+	wind(delta)
 
 	# execute the movement
 	velocity = move_and_slide(velocity, Vector2.UP)
@@ -258,3 +284,12 @@ func _on_Parasol_body_entered(body):
 	poke_vector.x *= horizontal_poke_factor
 	poke_vector.y *= vertical_poke_factor
 	velocity += poke_vector
+
+
+func _on_wind_body_entered(body, vector):
+	wind_velocity += vector
+	print("Wind Entered: ", wind_velocity)
+
+func _on_wind_body_exited(body, vector):
+	wind_velocity -= vector
+	print("Wind Exited: ", wind_velocity)
