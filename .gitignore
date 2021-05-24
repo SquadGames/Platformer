@@ -1,2 +1,6 @@
-builds
-.import
+builds/
+build/
+.import/
+*.translation
+export_presets.cfg
+.mono/
