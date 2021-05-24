@@ -1,12 +1,52 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/GUI/Squario Menu BG.png" type="Texture" id=1]
 [ext_resource path="res://DestinationButton.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/GUI/Fonts/Pangolin-Reg.tres" type="DynamicFont" id=3]
+[ext_resource path="res://LevelDetails.gd" type="Script" id=3]
+[ext_resource path="res://assets/GUI/Fonts/Pangolin-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/GUI/black rec.svg" type="Texture" id=5]
+
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://assets/GUI/Fonts/Pangolin-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=10]
+size = 64
+outline_color = Color( 0.482353, 0.380392, 1, 1 )
+font_data = SubResource( 6 )
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 22
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 22
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 32
+font_data = SubResource( 6 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 48
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
+font_data = ExtResource( 4 )
 
 [node name="LevelDetails" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -26,130 +66,165 @@ margin_left = 192.0
 margin_top = 20.0
 margin_right = 832.0
 margin_bottom = 580.0
+size_flags_vertical = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TitleRow" type="HBoxContainer" parent="MainColumn"]
 margin_right = 640.0
-margin_bottom = 91.0
+margin_bottom = 115.0
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.52
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="RichTextLabel" parent="MainColumn/TitleRow"]
-margin_right = 530.0
-margin_bottom = 91.0
+[node name="TitleBox" type="VBoxContainer" parent="MainColumn/TitleRow"]
+margin_right = 563.0
+margin_bottom = 115.0
 size_flags_horizontal = 3
-custom_fonts/normal_font = ExtResource( 3 )
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Title" type="RichTextLabel" parent="MainColumn/TitleRow/TitleBox"]
+margin_top = 17.0
+margin_right = 563.0
+margin_bottom = 98.0
+custom_fonts/normal_font = SubResource( 10 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "Title"
+text = "TITLE"
+fit_content_height = true
 
 [node name="SupportBox" type="VBoxContainer" parent="MainColumn/TitleRow"]
-margin_left = 534.0
+margin_left = 567.0
 margin_right = 640.0
-margin_bottom = 91.0
-size_flags_vertical = 3
+margin_bottom = 115.0
 
 [node name="RatingBG" type="TextureRect" parent="MainColumn/TitleRow/SupportBox"]
-margin_right = 106.0
-margin_bottom = 47.0
+margin_right = 73.0
+margin_bottom = 83.0
 size_flags_vertical = 3
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 1
 
 [node name="RatingBox" type="VBoxContainer" parent="MainColumn/TitleRow/SupportBox/RatingBG"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RatingLabel" type="RichTextLabel" parent="MainColumn/TitleRow/SupportBox/RatingBG/RatingBox"]
-margin_right = 106.0
-margin_bottom = 21.0
-size_flags_vertical = 3
-custom_fonts/normal_font = ExtResource( 3 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-custom_colors/selection_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+margin_top = 14.0
+margin_right = 73.0
+margin_bottom = 35.0
+size_flags_stretch_ratio = 0.81
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_colors/selection_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_selected = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Rating[/center]"
 text = "Rating"
+fit_content_height = true
 
 [node name="Rating" type="RichTextLabel" parent="MainColumn/TitleRow/SupportBox/RatingBG/RatingBox"]
-margin_top = 25.0
-margin_right = 106.0
-margin_bottom = 47.0
-size_flags_vertical = 3
-custom_fonts/normal_font = ExtResource( 3 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-custom_colors/selection_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "[num]"
+margin_top = 39.0
+margin_right = 73.0
+margin_bottom = 68.0
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_colors/selection_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_selected = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]1000[/center]"
+text = "1000"
+fit_content_height = true
 
 [node name="SupportButton" parent="MainColumn/TitleRow/SupportBox" instance=ExtResource( 2 )]
-margin_top = 51.0
-margin_right = 106.0
-margin_bottom = 91.0
+margin_top = 87.0
+margin_right = 73.0
+margin_bottom = 115.0
+custom_fonts/font = SubResource( 3 )
 text = "Support"
 type = "link"
+destination = "#"
+font_size = 22
+selected_font_size = 22
+selected_outline_size = 12
 
 [node name="Author" type="RichTextLabel" parent="MainColumn"]
-margin_top = 95.0
+margin_top = 119.0
 margin_right = 640.0
-margin_bottom = 186.0
-size_flags_vertical = 3
-custom_fonts/normal_font = ExtResource( 3 )
+margin_bottom = 140.0
+custom_fonts/normal_font = SubResource( 4 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Author:"
+fit_content_height = true
 
 [node name="Patron" type="RichTextLabel" parent="MainColumn"]
-margin_top = 190.0
+margin_top = 144.0
 margin_right = 640.0
-margin_bottom = 281.0
-size_flags_vertical = 3
-custom_fonts/normal_font = ExtResource( 3 )
+margin_bottom = 165.0
+custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Patron:"
+fit_content_height = true
+
+[node name="TextureRect" type="TextureRect" parent="MainColumn"]
+margin_top = 169.0
+margin_right = 640.0
+margin_bottom = 180.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
 
 [node name="PreviewLabel" type="RichTextLabel" parent="MainColumn"]
-margin_top = 285.0
+margin_top = 184.0
 margin_right = 640.0
-margin_bottom = 376.0
-size_flags_vertical = 3
-custom_fonts/normal_font = ExtResource( 3 )
+margin_bottom = 225.0
+custom_fonts/normal_font = SubResource( 7 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Preview"
+fit_content_height = true
 
 [node name="Preview" type="TextureRect" parent="MainColumn"]
-margin_top = 380.0
+margin_top = 229.0
 margin_right = 640.0
-margin_bottom = 471.0
+margin_bottom = 452.0
 size_flags_vertical = 3
 
 [node name="StartButton" parent="MainColumn" instance=ExtResource( 2 )]
-margin_top = 475.0
+margin_top = 456.0
 margin_right = 640.0
-margin_bottom = 515.0
+margin_bottom = 516.0
+custom_fonts/font = SubResource( 8 )
 text = "Start"
-type = "scene"
+align = 0
+type = "level"
+font_size = 48
+selected_font_size = 48
+selected_outline_size = 16
 
 [node name="BackButton" parent="MainColumn" instance=ExtResource( 2 )]
-margin_top = 519.0
+margin_top = 520.0
 margin_right = 640.0
-margin_bottom = 559.0
+margin_bottom = 560.0
+custom_fonts/font = SubResource( 9 )
 text = "Back"
+align = 0
 type = "scene"
 destination = "res://LevelList.tscn"
+font_size = 32
+selected_font_size = 32
+selected_outline_size = 10
