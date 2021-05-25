@@ -5,7 +5,7 @@ var loaded_level = null
 
 
 func _ready():
-	var loaded_level = load("user://selectedLevel.tscn").instance()
+	var loaded_level = load(Singleton.selected_level).instance()
 	if loaded_level.has_method("goal_areas"):
 		for goal_area in loaded_level.goal_areas():
 			goal_area.connect("body_entered", self, "_on_goal_entered")
