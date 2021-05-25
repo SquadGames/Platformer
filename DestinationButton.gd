@@ -2,9 +2,9 @@ extends Button
 
 export(String) var type
 export(String) var destination
-export(int) var font_size
-export(int) var selected_font_size
-export(int) var selected_outline_size
+export(int) var font_size = 32
+export(int) var selected_font_size = 48
+export(int) var selected_outline_size = 20
 var dynamic_font = DynamicFont.new()
 
 func _ready():

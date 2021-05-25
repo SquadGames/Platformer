@@ -10,8 +10,7 @@ func _ready():
 	)
 
 
-func _input(event):
-	print(event)
+func _unhandled_input(event):
 	if not event.is_action_pressed("start"):
 		return
 	raise()
@@ -21,4 +20,4 @@ func _input(event):
 
 func quit(dest):
 	get_tree().change_scene("res://MainMenu.tscn")
-	print(get_tree().root.get_children()[0].get_children())
+

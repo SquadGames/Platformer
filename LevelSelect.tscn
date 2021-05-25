@@ -102,9 +102,6 @@ margin_bottom = 571.0
 text = "Back"
 type = "scene"
 destination = "res://MainMenu.tscn"
-font_size = 32
-selected_font_size = 48
-selected_outline_size = 20
 
 [node name="LevelDetails" parent="." instance=ExtResource( 2 )]
 visible = false
