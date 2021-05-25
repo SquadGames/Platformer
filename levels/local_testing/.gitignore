@@ -1,0 +1,11 @@
+# This directory is used for testing local levels while they are in development
+# Put a single unhidden file in here (your copy of blank_level.tscn) and click
+# "test local level" after playing the project from the editor.
+
+# Once you are done testing it, move it back into the levels folder and commit
+# it there.
+
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
