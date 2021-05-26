@@ -18,12 +18,9 @@ func _input(event):
 
 func test_local_level(dest):
 	var dir = Directory.new()
-	if dir.open(Singleton.local_level_path) != OK:
-		return
-	dir.list_dir_begin(true, true)
-	var local_level = dir.get_next()
-	if local_level.ends_with(".tscn"):
-		Singleton.selected_level = Singleton.local_level_path + local_level
-		get_tree().change_scene(dest)
-	else:
-		print("ERR: put a single local testing level in ", Singleton.local_level_path)
+	assert(
+		dir.file_exists(Singleton.local_level_path),
+		"ERR: local level file not found, expecting " + Singleton.local_level_path
+	)
+	Singleton.selected_level = Singleton.local_level_path
+	get_tree().change_scene(dest)
