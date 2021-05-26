@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Level.gd" type="Script" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://PausedOverlay.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/GUI/Fonts/Pangolin-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://LevelComplete.tscn" type="PackedScene" id=5]
+
+[sub_resource type="LineShape2D" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 120
+font_data = ExtResource( 4 )
+
+[node name="Level2" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+limit_bottom = 200
+
+[node name="FallZone" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="line" type="CollisionShape2D" parent="FallZone"]
+position = Vector2( 0, 200 )
+shape = SubResource( 1 )
+
+[node name="LevelRestartTimer" type="Timer" parent="."]
+pause_mode = 2
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PausedOverlay" parent="CanvasLayer" instance=ExtResource( 3 )]
+visible = false
+margin_left = 1.78174
+margin_top = 7.1272
+margin_right = 1.78174
+margin_bottom = 7.1272
+
+[node name="DiedMessage" type="Label" parent="CanvasLayer"]
+visible = false
+margin_left = 378.696
+margin_top = 198.88
+margin_right = 900.696
+margin_bottom = 349.88
+custom_fonts/font = SubResource( 2 )
+text = "OH NOOO!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelComplete" parent="CanvasLayer" instance=ExtResource( 5 )]
+visible = false
+
+[connection signal="body_entered" from="FallZone" to="." method="_on_FallZone_body_entered"]
+[connection signal="timeout" from="LevelRestartTimer" to="." method="_on_LevelRestartTimer_timeout"]

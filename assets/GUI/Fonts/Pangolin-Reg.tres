@@ -1,7 +1,9 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[ext_resource path="res://assets/GUI/Fonts/Pangolin-Regular.ttf" type="DynamicFontData" id=1]
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/GUI/Fonts/Pangolin-Regular.ttf"
 
 [resource]
 size = 48
-font_data = ExtResource( 1 )
+outline_color = Color( 0.482353, 0.380392, 1, 1 )
+font_data = SubResource( 1 )

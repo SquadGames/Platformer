@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://RatingBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://DestinationButton.tscn" type="PackedScene" id=3]
+
+[node name="LevelRow" type="HBoxContainer"]
+margin_right = 499.0
+margin_bottom = 34.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DestinationButton" parent="." instance=ExtResource( 3 )]
+margin_right = 63.0
+margin_bottom = 40.0
+font_size = 22
+selected_font_size = 22
+selected_outline_size = 12
+
+[node name="Rating" parent="." instance=ExtResource( 2 )]
+margin_left = 67.0
+margin_right = 499.0
+margin_bottom = 40.0
+size_flags_horizontal = 3

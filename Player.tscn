@@ -24,14 +24,14 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "run",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 12 ) ],
 "loop": false,
 "name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "run",
 "speed": 5.0
 } ]
 
@@ -1215,5 +1215,6 @@ shape = SubResource( 17 )
 
 [node name="ControlLockTimeout" type="Timer" parent="."]
 one_shot = true
+
 [connection signal="body_entered" from="Parasol" to="." method="_on_Parasol_body_entered"]
 [connection signal="timeout" from="ControlLockTimeout" to="." method="_on_ControlLockTimeout_timeout"]

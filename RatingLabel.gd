@@ -9,5 +9,5 @@ export(String) var label_text
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.text = label_text
+	self.bbcode_text = "[right]%s[/right]" % label_text
 

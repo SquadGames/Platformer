@@ -15,8 +15,6 @@ enum State {
 }
 enum Direction {RIGHT, LEFT, NONE}
 
-var paused = true
-
 var velocity = Vector2(0, 0)
 var poke_vector = Vector2(0, 0)
 var horizontal_poke_factor = 0.4
@@ -31,10 +29,6 @@ var wind_velocity = Vector2(0, 0)
 
 func _ready():
 	play("idle")
-
-
-func set_paused(flag):
-	paused = flag
 
 
 func play(animation):
@@ -244,8 +238,6 @@ func poke_dr(delta):
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
-	if paused:
-		return
 
 	if state == State.READY:
 		# Player actions

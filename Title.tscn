@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Title.gd" type="Script" id=1]
 [ext_resource path="res://assets/GUI/Squario Menu BG.png" type="Texture" id=2]
 [ext_resource path="res://assets/GUI/Squario Logo.svg" type="Texture" id=3]
 [ext_resource path="res://assets/GUI/Fonts/Pangolin-Reg.tres" type="DynamicFont" id=4]
+[ext_resource path="res://DestinationButton.tscn" type="PackedScene" id=5]
 
 [node name="Title" type="Control"]
 anchor_right = 1.0
@@ -39,3 +40,13 @@ text = "Press Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TestLocalLevel" parent="." instance=ExtResource( 5 )]
+visible = false
+margin_left = 371.033
+margin_top = 486.386
+margin_right = 647.033
+margin_bottom = 532.386
+text = "Test Local Level"
+type = "scene"
+destination = "res://Level.tscn"

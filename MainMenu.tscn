@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/GUI/Squario Menu BG.png" type="Texture" id=2]
 [ext_resource path="res://MediumTitle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/GUI/Squario Logo.svg" type="Texture" id=4]
-[ext_resource path="res://MenuButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://DestinationButton.tscn" type="PackedScene" id=5]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -36,6 +36,7 @@ __meta__ = {
 }
 
 [node name="LevelSelect" parent="Opts" instance=ExtResource( 5 )]
+text = "Level Select"
 type = "scene"
 destination = "res://LevelSelect.tscn"
 
@@ -44,7 +45,7 @@ margin_top = 50.0
 margin_bottom = 96.0
 text = "Build Levels"
 type = "link"
-destination = "#"
+destination = "https://github.com/SquadGames/Platformer/blob/main/docs/making_a_custom_level.md"
 
 [node name="Options" parent="Opts" instance=ExtResource( 5 )]
 margin_top = 100.0
@@ -58,4 +59,4 @@ margin_top = 150.0
 margin_bottom = 196.0
 text = "What is this?"
 type = "scene"
-destination = "WhatIsThis.tscn"
+destination = "res://WhatIsThis.tscn"
