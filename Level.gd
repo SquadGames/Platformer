@@ -12,14 +12,16 @@ func _ready():
 	add_child(loaded_level)
 	$Player.position = starting_player_position
 	$Player.visible = true
+	get_tree().paused = false
+	Singleton.game_state = Singleton.PLAYING
 
 
 func _on_FallZone_body_entered(body):
-	$Player.set_paused(true)
+	Singleton.game_state = Singleton.DIED
+	get_tree().paused = true
 	$CanvasLayer/DiedMessage.visible = true
 	$CanvasLayer/DiedMessage.raise()
-	$LevelRestartTimer.start(2)
-
+	$LevelRestartTimer.start(1)
 
 func _on_LevelRestartTimer_timeout():
 	$CanvasLayer/DiedMessage.visible = false
@@ -29,8 +31,8 @@ func _on_LevelRestartTimer_timeout():
 
 
 func _on_goal_entered(body):
-	print("goal entered: ", body)
 	if body == $Player:
+		Singleton.game_state = Singleton.WON
 		get_tree().paused = true
 		$CanvasLayer/LevelComplete.visible = true
 		$CanvasLayer/LevelComplete.raise()

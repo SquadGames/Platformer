@@ -1,6 +1,8 @@
 extends Control
 
+
 func _ready():
+	pause_mode = Node.PAUSE_MODE_PROCESS
 	if OS.has_feature("editor"):
 		$TestLocalLevel.visible = true
 		$TestLocalLevel.connect(

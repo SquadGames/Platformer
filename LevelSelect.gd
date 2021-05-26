@@ -4,6 +4,7 @@ var LevelRow = preload("res://LevelRow.tscn")
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	pause_mode = Node.PAUSE_MODE_PROCESS
 	$BackButton.connect("pressed", self, "_load_scene", [$BackButton.destination])
 	$get_world.request("https://raw.githubusercontent.com/SquadGames/Platformer/main/worlds/default_world.json")
 
