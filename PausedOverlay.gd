@@ -11,7 +11,7 @@ func _ready():
 
 
 func _unhandled_input(event):
-	if not event.is_action_pressed("start"):
+	if not event.is_action_pressed("start") or Singleton.game_state != Singleton.PLAYING:
 		return
 	raise()
 	visible = not visible
