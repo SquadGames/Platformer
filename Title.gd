@@ -18,15 +18,12 @@ func _input(event):
 
 func test_local_level(dest):
 	var dir = Directory.new()
-	var local_level = ""
-	if dir.open(Singleton.local_level_path) == OK:
-		dir.list_dir_begin(true, true)
-		var file_name = dir.get_next()
-		if not dir.current_is_dir():
-			local_level = file_name
-		dir.list_dir_end()
-	if local_level != "":
-		Singleton.selected_level = "res://levels/local_testing/unnamed_goose_level.tscn"
+	if dir.open(Singleton.local_level_path) != OK:
+		return
+	dir.list_dir_begin(true, true)
+	var local_level = dir.get_next()
+	if local_level.ends_with(".tscn"):
+		Singleton.selected_level = Singleton.local_level_path + local_level
 		get_tree().change_scene(dest)
 	else:
 		print("ERR: put a single local testing level in ", Singleton.local_level_path)
