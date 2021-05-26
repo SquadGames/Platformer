@@ -1,15 +1,15 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/GUI/Fonts/PageTitleFond.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Options.gd" type="Script" id=1]
 [ext_resource path="res://assets/GUI/Squario Menu BG.png" type="Texture" id=2]
-[ext_resource path="res://DestinationButton.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Options.gd" type="Script" id=4]
-[ext_resource path="res://ControlsBox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/GUI/Fonts/PageTitleFond.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ControlsBox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://DestinationButton.tscn" type="PackedScene" id=5]
 
 [node name="Options" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 4 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -29,7 +29,7 @@ margin_left = 383.362
 margin_top = 38.2434
 margin_right = 626.362
 margin_bottom = 125.243
-custom_fonts/normal_font = ExtResource( 1 )
+custom_fonts/normal_font = ExtResource( 3 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -43,9 +43,9 @@ margin_bottom = 166.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "We haven't actually implemented any options yet, but here are the controlls"
 
-[node name="Controls" parent="." instance=ExtResource( 5 )]
+[node name="Controls" parent="." instance=ExtResource( 4 )]
 
-[node name="BackButton" parent="." instance=ExtResource( 3 )]
+[node name="BackButton" parent="." instance=ExtResource( 5 )]
 margin_left = 177.054
 margin_top = 490.973
 margin_right = 269.054

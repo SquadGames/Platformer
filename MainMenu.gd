@@ -1,6 +1,7 @@
 extends Control
 
 func _ready():
+	pause_mode = Node.PAUSE_MODE_PROCESS
 	for button in $Opts.get_children():
 		if button.type == "scene":
 			button.connect("pressed", self, "_load_scene", [button.destination])
