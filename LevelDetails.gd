@@ -17,7 +17,7 @@ func _ready():
 	$MainColumn/TitleRow/SupportBox/SupportButton.connect(
 		"pressed", 
 		self, 
-		"_load_scene", 
+		"_open_link", 
 		[$MainColumn/TitleRow/SupportBox/SupportButton.destination]
 	)
 	$MainColumn/BackButton.connect(
@@ -29,6 +29,10 @@ func _ready():
 func _load_scene(scene):
 	print("Trying to load scene: ", scene)
 	get_tree().change_scene(scene)
+	
+func _open_link(link):
+	print("Trying to open link: ", link)
+	OS.shell_open(link)
 	
 func _back():
 	self.visible = false
