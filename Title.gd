@@ -20,15 +20,9 @@ func _input(event):
 
 func test_local_level(dest):
 	var dir = Directory.new()
-	var local_level = ""
-	if dir.open(Singleton.local_level_path) == OK:
-		dir.list_dir_begin(true, true)
-		var file_name = dir.get_next()
-		if not dir.current_is_dir():
-			local_level = file_name
-		dir.list_dir_end()
-	if local_level != "":
-		Singleton.selected_level = "res://levels/local_testing/unnamed_goose_level.tscn"
-		get_tree().change_scene(dest)
-	else:
-		print("ERR: put a single local testing level in ", Singleton.local_level_path)
+	assert(
+		dir.file_exists(Singleton.local_level_path),
+		"ERR: local level file not found, expecting " + Singleton.local_level_path
+	)
+	Singleton.selected_level = Singleton.local_level_path
+	get_tree().change_scene(dest)
