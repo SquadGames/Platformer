@@ -15,19 +15,29 @@ enum State {
 }
 enum Direction {RIGHT, LEFT, NONE}
 
-var velocity = Vector2(0, 0)
-var poke_vector = Vector2(0, 0)
-var horizontal_poke_factor = 0.4
-var vertical_poke_factor = 1.0
-var ground_friction = BASE_GROUND_FRICTION
-var air_friction = BASE_AIR_FRICTION
-var max_glide_down_speed = 30
-var state = State.READY
-var until_ready = 0
-var wind_velocity = Vector2(0, 0)
+var velocity
+var poke_vector
+var horizontal_poke_factor
+var vertical_poke_factor
+var ground_friction
+var air_friction
+var max_glide_down_speed
+var state
+var until_ready
+var wind_velocity
 
 
 func _ready():
+	velocity = Vector2(0, 0)
+	poke_vector = Vector2(0, 0)
+	horizontal_poke_factor = 0.4
+	vertical_poke_factor = 1.0
+	ground_friction = BASE_GROUND_FRICTION
+	air_friction = BASE_AIR_FRICTION
+	max_glide_down_speed = 30
+	state = State.READY
+	until_ready = 0
+	wind_velocity = Vector2(0, 0)
 	play("idle")
 
 
@@ -146,70 +156,6 @@ func poke_dl(delta):
 	active_for(POKE_ACTIVE_TIME)
 
 
-#func poke_l(delta):
-#	if !Input.is_action_just_pressed("poke") \
-#		or Input.is_action_pressed("ui_up") \
-#  		or Input.is_action_pressed("ui_down") \
-#		or !Input.is_action_pressed("ui_left") \
-#		or Input.is_action_pressed("ui_right"):
-#		return
-#
-#	poke_vector = Vector2(-POKEFORCE, 0)
-#	play("poke_l")
-#	active_for(POKE_ACTIVE_TIME)
-#
-#
-#func poke_ul(delta):
-#	if !Input.is_action_just_pressed("poke") \
-#		or !Input.is_action_pressed("ui_up") \
-#  		or Input.is_action_pressed("ui_down") \
-#		or !Input.is_action_pressed("ui_left") \
-#		or Input.is_action_pressed("ui_right"):
-#		return
-#
-#	poke_vector = Vector2(-POKEFORCE, -POKEFORCE)
-#	play("poke_ul")
-#	active_for(POKE_ACTIVE_TIME)
-#
-#
-#func poke_u(delta):
-#	if !Input.is_action_just_pressed("poke") \
-#		or !Input.is_action_pressed("ui_up") \
-#  		or Input.is_action_pressed("ui_down") \
-#		or Input.is_action_pressed("ui_left") \
-#		or Input.is_action_pressed("ui_right"):
-#		return
-#
-#	poke_vector = Vector2(0, -POKEFORCE)
-#	play("poke_u")
-#	active_for(POKE_ACTIVE_TIME)
-#
-#
-#func poke_ur(delta):
-#	if !Input.is_action_just_pressed("poke") \
-#		or !Input.is_action_pressed("ui_up") \
-#  		or Input.is_action_pressed("ui_down") \
-#		or Input.is_action_pressed("ui_left") \
-#		or !Input.is_action_pressed("ui_right"):
-#		return
-#
-#	poke_vector = Vector2(POKEFORCE, -POKEFORCE)
-#	play("poke_ur")
-#	active_for(POKE_ACTIVE_TIME)
-#
-#
-#func poke_r(delta):
-#	if !Input.is_action_just_pressed("poke") \
-#		or Input.is_action_pressed("ui_up") \
-#  		or Input.is_action_pressed("ui_down") \
-#		or Input.is_action_pressed("ui_left") \
-#		or !Input.is_action_pressed("ui_right"):
-#		return
-#
-#	poke_vector = Vector2(POKEFORCE, 0)
-#	play("poke_r")
-#	active_for(POKE_ACTIVE_TIME)
-
 func wind(delta):
 	if wind_velocity.x > 0:
 		velocity.x = min(velocity.x,
@@ -250,11 +196,6 @@ func _physics_process(delta):
 		glide(delta)
 		poke_d(delta)
 		poke_dl(delta)
-		#poke_l(delta)
-		#poke_ul(delta)
-		#poke_u(delta)
-		#poke_ur(delta)
-		#poke_r(delta)
 		poke_dr(delta)
 	elif until_ready <= 0:
 		until_ready = 0
