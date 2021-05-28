@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Options.gd" type="Script" id=1]
 [ext_resource path="res://assets/GUI/Squario Menu BG.png" type="Texture" id=2]
-[ext_resource path="res://assets/GUI/Fonts/PageTitleFond.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/GUI/Fonts/PageTitleFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://ControlsBox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://DestinationButton.tscn" type="PackedScene" id=5]
 
@@ -22,8 +22,8 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 1020.82
-margin_bottom = 601.082
+margin_right = 1026.12
+margin_bottom = 604.261
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -39,6 +39,9 @@ custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
 text = " Options"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = 275.0

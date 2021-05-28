@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/GUI/Squario Menu BG.png" type="Texture" id=1]
 [ext_resource path="res://assets/GUI/Fonts/LevelListItem.tres" type="DynamicFont" id=2]
-[ext_resource path="res://assets/GUI/Fonts/PageTitleFond.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/GUI/Fonts/PageTitleFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://DestinationButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://WhatIsThis.gd" type="Script" id=5]
 
