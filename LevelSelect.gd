@@ -23,7 +23,7 @@ func _on_get_world_request_completed(result, response_code, headers, body):
 		rng.randomize()
 		rating.label_text = str(rng.randi_range(0, 1000))
 		print("rating", rating.label_text)
-		$LevelList/LevelBox.add_child(level_row)
+		$LevelList/ScrollContainer/LevelBox.add_child(level_row)
 		
 func _on_get_level_request_completed(result, response_code, headers, body):
 	if $LevelDetails.visible:
