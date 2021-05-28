@@ -102,14 +102,14 @@ custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Move"
 
-[node name="Analog Stick" type="Label" parent="MoveRow"]
+[node name="D Pad" type="Label" parent="MoveRow"]
 margin_left = 254.0
 margin_right = 504.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Analog Stick"
+text = "D Pad"
 
 [node name="Arrow Keys" type="Label" parent="MoveRow"]
 margin_left = 508.0
