@@ -11,14 +11,13 @@ __meta__ = {
 }
 
 [node name="DestinationButton" parent="." instance=ExtResource( 3 )]
-margin_right = 63.0
-margin_bottom = 40.0
+margin_right = 75.0
 font_size = 22
 selected_font_size = 22
 selected_outline_size = 12
 
 [node name="Rating" parent="." instance=ExtResource( 2 )]
-margin_left = 67.0
+margin_left = 79.0
 margin_right = 499.0
-margin_bottom = 40.0
+margin_bottom = 46.0
 size_flags_horizontal = 3

@@ -5,41 +5,37 @@
 [ext_resource path="res://LevelDetails.gd" type="Script" id=3]
 [ext_resource path="res://assets/GUI/Fonts/Pangolin-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/GUI/black rec.svg" type="Texture" id=5]
+[ext_resource path="res://assets/GUI/Fonts/PageTitleFont.tres" type="DynamicFont" id=6]
 
-[sub_resource type="DynamicFontData" id=1]
-font_path = "res://assets/GUI/Fonts/Pangolin-Regular.ttf"
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 64
-outline_color = Color( 0.482353, 0.380392, 1, 1 )
-font_data = SubResource( 1 )
+size = 22
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=3]
+size = 22
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 22
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 22
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=6]
-font_data = ExtResource( 4 )
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://assets/GUI/Fonts/Pangolin-Regular.ttf"
 
 [sub_resource type="DynamicFont" id=7]
-font_data = ExtResource( 4 )
+size = 32
+font_data = SubResource( 6 )
 
 [sub_resource type="DynamicFont" id=8]
-size = 32
-font_data = SubResource( 1 )
-
-[sub_resource type="DynamicFont" id=9]
 size = 48
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=9]
 size = 32
 font_data = ExtResource( 4 )
 
@@ -91,7 +87,8 @@ alignment = 1
 margin_top = 13.0
 margin_right = 551.0
 margin_bottom = 94.0
-custom_fonts/normal_font = SubResource( 2 )
+rect_clip_content = false
+custom_fonts/normal_font = ExtResource( 6 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -124,7 +121,7 @@ margin_top = 8.0
 margin_right = 85.0
 margin_bottom = 29.0
 size_flags_stretch_ratio = 0.81
-custom_fonts/normal_font = SubResource( 3 )
+custom_fonts/normal_font = SubResource( 1 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/selection_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_selected = Color( 1, 1, 1, 1 )
@@ -137,7 +134,7 @@ fit_content_height = true
 margin_top = 33.0
 margin_right = 85.0
 margin_bottom = 62.0
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/selection_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_selected = Color( 1, 1, 1, 1 )
@@ -150,7 +147,7 @@ fit_content_height = true
 margin_top = 74.0
 margin_right = 85.0
 margin_bottom = 108.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
 text = "Support"
 type = "link"
 destination = "https://github.com/SquadGames/Platformer/blob/fb5820c37586544382152f76d9cdd51d03a288e1/docs/support.md"
@@ -162,7 +159,7 @@ selected_outline_size = 12
 margin_top = 112.0
 margin_right = 640.0
 margin_bottom = 133.0
-custom_fonts/normal_font = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 4 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -173,7 +170,7 @@ fit_content_height = true
 margin_top = 137.0
 margin_right = 640.0
 margin_bottom = 158.0
-custom_fonts/normal_font = SubResource( 7 )
+custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -191,7 +188,7 @@ size_flags_stretch_ratio = 0.05
 margin_top = 177.0
 margin_right = 640.0
 margin_bottom = 218.0
-custom_fonts/normal_font = SubResource( 8 )
+custom_fonts/normal_font = SubResource( 7 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -208,7 +205,7 @@ size_flags_vertical = 3
 margin_top = 444.0
 margin_right = 640.0
 margin_bottom = 510.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 8 )
 text = "Start"
 align = 0
 type = "level"
@@ -219,7 +216,7 @@ selected_outline_size = 16
 margin_top = 514.0
 margin_right = 640.0
 margin_bottom = 560.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 9 )
 text = "Back"
 align = 0
 type = "popup"

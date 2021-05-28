@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/GUI/Squario Menu BG.png" type="Texture" id=1]
 [ext_resource path="res://assets/GUI/Fonts/LevelListItem.tres" type="DynamicFont" id=2]
-[ext_resource path="res://assets/GUI/Fonts/PageTitleFond.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/GUI/Fonts/PageTitleFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://DestinationButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://WhatIsThis.gd" type="Script" id=5]
 
@@ -38,7 +38,7 @@ margin_right = 816.018
 margin_bottom = 456.361
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "This a prototype user generated content platformer designed and published by Squad.Games. It's built specifically so that the community can contribute content to the game which means you can make your own levels and share them with your friends and the world! If we ever start making money from the game, we'll share it with the folks who've contributed  in as fair a way as we can."
+text = "This a prototype user-generated content platformer designed and published by Squad Games. It's built so that the community can contribute content to the game, which means you can make your own levels and share them with the world! If we ever start making money from the game, we'll share it with the folks who've contributed in as fair a way as we can."
 autowrap = true
 
 [node name="BackButton" parent="." instance=ExtResource( 4 )]

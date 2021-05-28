@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/GUI/Fonts/LevelListItem.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/GUI/Fonts/Pangolin-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 22
+outline_size = 6
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 22
+outline_size = 6
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 22
+outline_size = 6
+font_data = ExtResource( 2 )
 
 [node name="Controlls" type="VBoxContainer"]
 margin_left = 197.019
@@ -20,7 +36,7 @@ margin_bottom = 28.0
 margin_right = 250.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Action"
 
@@ -29,7 +45,7 @@ margin_left = 254.0
 margin_right = 504.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Controller (XBox)"
 
@@ -38,7 +54,7 @@ margin_left = 508.0
 margin_right = 758.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Keyboard"
 
@@ -53,7 +69,7 @@ margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Pause"
+text = "Pause / Start"
 
 [node name="Start" type="Label" parent="PauseRow"]
 margin_left = 254.0
@@ -73,10 +89,41 @@ custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Esc"
 
-[node name="JumpRow" type="HBoxContainer" parent="."]
+[node name="MoveRow" type="HBoxContainer" parent="."]
 margin_top = 64.0
 margin_right = 758.0
 margin_bottom = 92.0
+
+[node name="Move" type="Label" parent="MoveRow"]
+margin_right = 250.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 250, 0 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Move"
+
+[node name="D Pad" type="Label" parent="MoveRow"]
+margin_left = 254.0
+margin_right = 504.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 250, 0 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "D Pad"
+
+[node name="Arrow Keys" type="Label" parent="MoveRow"]
+margin_left = 508.0
+margin_right = 758.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 250, 0 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Left, Right Arrows"
+
+[node name="JumpRow" type="HBoxContainer" parent="."]
+margin_top = 96.0
+margin_right = 758.0
+margin_bottom = 124.0
 
 [node name="Jump" type="Label" parent="JumpRow"]
 margin_right = 250.0
@@ -105,9 +152,9 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Space"
 
 [node name="GlideRow" type="HBoxContainer" parent="."]
-margin_top = 96.0
+margin_top = 128.0
 margin_right = 758.0
-margin_bottom = 124.0
+margin_bottom = 156.0
 
 [node name="Glide" type="Label" parent="GlideRow"]
 margin_right = 250.0
@@ -135,10 +182,42 @@ custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "W"
 
-[node name="PokeDownLeftRow" type="HBoxContainer" parent="."]
-margin_top = 128.0
+[node name="PokeRow" type="HBoxContainer" parent="."]
+margin_top = 160.0
 margin_right = 758.0
-margin_bottom = 156.0
+margin_bottom = 188.0
+
+[node name="Pokes" type="Label" parent="PokeRow"]
+margin_right = 250.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 250, 0 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Poke"
+
+[node name="X, A, B" type="Label" parent="PokeRow"]
+margin_left = 254.0
+margin_right = 504.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 250, 0 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "X, A, B"
+
+[node name="A, S, D" type="Label" parent="PokeRow"]
+margin_left = 508.0
+margin_right = 758.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 250, 0 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "A, S, D"
+
+[node name="PokeDownLeftRow" type="HBoxContainer" parent="."]
+visible = false
+margin_top = 160.0
+margin_right = 758.0
+margin_bottom = 188.0
 
 [node name="Poke Down Left" type="Label" parent="PokeDownLeftRow"]
 margin_right = 250.0
@@ -167,6 +246,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "A"
 
 [node name="PokeDownRow" type="HBoxContainer" parent="."]
+visible = false
 margin_top = 160.0
 margin_right = 758.0
 margin_bottom = 188.0
@@ -198,9 +278,10 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "S"
 
 [node name="PokeDownRightRow" type="HBoxContainer" parent="."]
-margin_top = 192.0
+visible = false
+margin_top = 160.0
 margin_right = 758.0
-margin_bottom = 220.0
+margin_bottom = 188.0
 
 [node name="Poke Down Right" type="Label" parent="PokeDownRightRow"]
 margin_right = 250.0

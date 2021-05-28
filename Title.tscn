@@ -42,11 +42,9 @@ __meta__ = {
 }
 
 [node name="TestLocalLevel" parent="." instance=ExtResource( 5 )]
-visible = false
-margin_left = 371.033
-margin_top = 486.386
-margin_right = 647.033
-margin_bottom = 532.386
+margin_top = 486.0
+margin_right = 1024.0
+margin_bottom = 532.0
 text = "Test Local Level"
 type = "scene"
 destination = "res://Level.tscn"

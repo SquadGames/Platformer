@@ -79,20 +79,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelBox" type="VBoxContainer" parent="LevelList"]
+[node name="ScrollContainer" type="ScrollContainer" parent="LevelList"]
 margin_top = 49.0
 margin_right = 488.0
 margin_bottom = 331.0
+rect_clip_content = false
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.22
+
+[node name="LevelBox" type="VBoxContainer" parent="LevelList/ScrollContainer"]
+margin_right = 488.0
+margin_bottom = 282.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.22
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelRow" parent="LevelList/LevelBox" instance=ExtResource( 10 )]
+[node name="LevelRow" parent="LevelList/ScrollContainer/LevelBox" instance=ExtResource( 10 )]
 visible = false
 margin_right = 488.0
-margin_bottom = 40.0
+margin_bottom = 46.0
 
 [node name="BackButton" parent="." instance=ExtResource( 1 )]
 margin_left = 374.0
