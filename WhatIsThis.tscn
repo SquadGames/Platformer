@@ -38,8 +38,10 @@ margin_right = 816.018
 margin_bottom = 456.361
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "This a prototype user-generated content platformer designed and published by Squad Games. It's built so that the community can contribute content to the game, which means you can make your own levels and share them with the world! If we ever start making money from the game, we'll share it with the folks who've contributed in as fair a way as we can."
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BackButton" parent="." instance=ExtResource( 4 )]
 margin_left = 267.26
@@ -49,3 +51,10 @@ margin_bottom = 519.841
 text = "Back"
 type = "scene"
 destination = "res://MainMenu.tscn"
+
+[node name="GetContent" type="HTTPRequest" parent="."]
+__meta__ = {
+"_editor_description_": "fetch what is this info from github"
+}
+
+[connection signal="request_completed" from="GetContent" to="." method="_on_HTTPRequest_request_completed"]
