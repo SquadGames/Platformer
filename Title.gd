@@ -11,6 +11,8 @@ func _ready():
 			"test_local_level",
 			[$TestLocalLevel.destination]
 		)
+	else:
+		$TestLocalLevel.visible = false
 
 
 func _input(event):
