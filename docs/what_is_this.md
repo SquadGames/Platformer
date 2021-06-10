@@ -1,0 +1,1 @@
+This a prototype user-generated content platformer designed and published by Squad Games. It's built so that the community can contribute content to the game, which means you can make your own levels and share them with the world! If we ever start making money from the game, we'll share it with the folks who've contributed in as fair a way as we can.
